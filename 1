@@ -1,0 +1,47 @@
+
+
+from PIL import Image
+import os
+import shutil
+from pathlib import Path
+
+
+picture_list = []
+
+path = "C:/Users/milos/Desktop/Sorting folder"
+
+base_name = input("Enter name of your file: (example: Maria's wedding)")
+
+folder_name = input("Enter folder name:")
+desktop_path = Path.home() / "Desktop"
+location = os.path.join(desktop_path, folder_name)
+os.makedirs(location)
+contents = os.listdir(path)
+
+
+extensions = ('.JPG', '.jpg')
+
+for file in contents:
+    if file.endswith( extensions ):
+        picture_name = file
+        image = Image.open(os.path.join(path, picture_name))
+        exif_data = image.getexif()
+        date_time = exif_data[306]
+        picture_data = date_time
+        picture = {"picture name": picture_name, "picture_data": picture_data}
+        picture_list.append(picture)
+        continue
+
+sorted_pictures = sorted(picture_list, key=lambda x: x["picture_data"])
+
+
+counter = 1
+for picture in sorted_pictures:
+    convert_str = str(counter)
+    file_name = base_name + " " + str(counter)
+    counter += 1
+    print(file_name)
+    shutil.copy(os.path.join(path, picture["picture name"]), os.path.join(location, file_name + ".jpg"))
+
+
+
