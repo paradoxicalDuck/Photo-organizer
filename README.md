@@ -3,4 +3,4 @@ This program takes jpegs and sort them chronological using meta data of pictures
 
 How to run:
 To run this program just create a folder on your desktop (Sorting folder) put your jpgs in there and run the program. 
-After that program will create another folder on your dektop and rename file in chronological order and copy them into that folder.
+After that program will create another folder on your desktop and rename files in chronological order and copy them into that folder.
